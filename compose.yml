@@ -1,0 +1,10 @@
+services:
+  portal-whats:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: portal-whats-react:latest
+    container_name: portal-whats-react
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8080}:80"
