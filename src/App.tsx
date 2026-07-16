@@ -69,9 +69,6 @@ function App() {
         <a href="#inicio" className="brand">
           <img src="/ss-sistemas-icon.svg" alt="" className="brand-icon" />
 
-          <span>
-            <strong>SS</strong> Sistemas
-          </span>
         </a>
 
         <nav className="navigation">
@@ -149,29 +146,48 @@ function App() {
           </div>
 
           <div className="hero-art">
-            <div className="art-orbit orbit-one" />
-            <div className="art-orbit orbit-two" />
-            <div className="art-orbit orbit-three" />
+  <div className="sphere-stage">
+    <span className="sphere-ambient-glow" />
 
-            <div className="art-core">
-              <img src="/ss-sistemas-icon.svg" alt="SS Sistemas" />
-            </div>
+    <span className="sphere-orbit sphere-orbit-one" />
+    <span className="sphere-orbit sphere-orbit-two" />
+    <span className="sphere-orbit sphere-orbit-three" />
 
-            <div className="floating-tag tag-one">
-              <span />
-              Desenvolvimento
-            </div>
+    <span className="sphere-particle sphere-particle-one" />
+    <span className="sphere-particle sphere-particle-two" />
+    <span className="sphere-particle sphere-particle-three" />
 
-            <div className="floating-tag tag-two">
-              <span />
-              Consultoria
-            </div>
+    <div className="tech-sphere">
+      <div className="sphere-rotation">
+        <span className="sphere-light" />
+        <span className="sphere-grid sphere-grid-one" />
+        <span className="sphere-grid sphere-grid-two" />
+      </div>
 
-            <div className="floating-tag tag-three">
-              <span />
-              Automação
-            </div>
-          </div>
+      <div className="sphere-logo">
+        <img
+          src="/ss-sistemas-icon.svg"
+          alt="SS Sistemas"
+        />
+      </div>
+    </div>
+
+    <div className="sphere-tag sphere-tag-development">
+      <span />
+      Desenvolvimento
+    </div>
+
+    <div className="sphere-tag sphere-tag-consulting">
+      <span />
+      Consultoria
+    </div>
+
+    <div className="sphere-tag sphere-tag-automation">
+      <span />
+      Automação
+    </div>
+  </div>
+</div>
         </section>
 
         <div className="service-marquee">
