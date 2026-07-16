@@ -1538,3 +1538,555 @@ a {
     text-align: center;
   }
 }
+
+
+/* =========================================================
+   ESFERA ANIMADA DA HERO
+   ========================================================= */
+
+.hero-art {
+  min-height: 570px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  perspective: 1100px;
+}
+
+.sphere-stage {
+  width: min(100%, 600px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.sphere-ambient-glow {
+  width: 62%;
+  height: 62%;
+  position: absolute;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(239, 63, 156, 0.28),
+      rgba(155, 92, 255, 0.13) 42%,
+      rgba(255, 139, 39, 0.07) 62%,
+      transparent 74%
+    );
+  filter: blur(42px);
+  animation: ambientBreathing 5s ease-in-out infinite;
+}
+
+/* Esfera principal */
+
+.tech-sphere {
+  width: 52%;
+  aspect-ratio: 1;
+  padding: 1px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  z-index: 5;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(239, 63, 156, 0.5),
+    rgba(155, 92, 255, 0.2),
+    rgba(255, 139, 39, 0.45)
+  );
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 55px rgba(239, 63, 156, 0.2),
+    0 0 110px rgba(255, 139, 39, 0.1),
+    0 35px 80px rgba(0, 0, 0, 0.55);
+  animation: sphereEntrance 1.4s
+    cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-style: preserve-3d;
+}
+
+.tech-sphere::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 30px rgba(239, 63, 156, 0.08),
+    0 0 20px rgba(155, 92, 255, 0.08);
+}
+
+.sphere-rotation {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      rgba(255, 255, 255, 0.08),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 62% 65%,
+      rgba(239, 63, 156, 0.12),
+      transparent 37%
+    ),
+    linear-gradient(145deg, #111019, #07070c 58%, #100a0c);
+  animation: sphereFloating 6s ease-in-out infinite;
+}
+
+.sphere-rotation::before {
+  content: "";
+  width: 160%;
+  height: 160%;
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  border-radius: 42%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(239, 63, 156, 0.16) 55deg,
+    transparent 115deg,
+    rgba(155, 92, 255, 0.12) 190deg,
+    transparent 250deg,
+    rgba(255, 139, 39, 0.12) 310deg,
+    transparent 360deg
+  );
+  animation: sphereSpin 14s linear infinite;
+}
+
+.sphere-rotation::after {
+  content: "";
+  position: absolute;
+  inset: 9%;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 45% 42%,
+      rgba(255, 255, 255, 0.035),
+      transparent 38%
+    ),
+    rgba(2, 2, 6, 0.48);
+  box-shadow:
+    inset -28px -24px 45px rgba(0, 0, 0, 0.6),
+    inset 18px 16px 30px rgba(255, 255, 255, 0.025);
+}
+
+.sphere-light {
+  width: 34%;
+  height: 120%;
+  position: absolute;
+  top: -10%;
+  left: -24%;
+  z-index: 3;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.09),
+    transparent
+  );
+  filter: blur(10px);
+  animation: sphereLightPass 7s ease-in-out infinite;
+}
+
+/* Linhas internas da esfera */
+
+.sphere-grid {
+  position: absolute;
+  inset: 15%;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  border-radius: 50%;
+}
+
+.sphere-grid-one {
+  transform: rotateX(62deg);
+}
+
+.sphere-grid-two {
+  transform: rotateY(63deg);
+}
+
+/* Logo surgindo */
+
+.sphere-logo {
+  width: 67%;
+  height: 67%;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  z-index: 8;
+  border-radius: 22%;
+  animation: logoNaturalReveal 1.8s
+    0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-style: preserve-3d;
+}
+
+.sphere-logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 22%;
+  filter:
+    drop-shadow(0 0 16px rgba(239, 63, 156, 0.26))
+    drop-shadow(0 0 35px rgba(155, 92, 255, 0.12));
+  animation: logoBreathing 5s 2.2s ease-in-out infinite;
+}
+
+/* Órbitas externas */
+
+.sphere-orbit {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.sphere-orbit-one {
+  width: 79%;
+  height: 79%;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  animation: orbitRotationOne 18s linear infinite;
+}
+
+.sphere-orbit-two {
+  width: 93%;
+  height: 57%;
+  border: 1px solid rgba(239, 63, 156, 0.12);
+  transform: rotate(-18deg);
+  animation: orbitRotationTwo 23s linear infinite reverse;
+}
+
+.sphere-orbit-three {
+  width: 58%;
+  height: 94%;
+  border: 1px dashed rgba(255, 139, 39, 0.1);
+  transform: rotate(34deg);
+  animation: orbitRotationThree 28s linear infinite;
+}
+
+/* Partículas */
+
+.sphere-particle {
+  position: absolute;
+  z-index: 4;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--orange));
+  box-shadow: 0 0 16px currentColor;
+}
+
+.sphere-particle-one {
+  width: 6px;
+  height: 6px;
+  top: 19%;
+  left: 25%;
+  color: var(--purple);
+  animation: particleFloatingOne 5s ease-in-out infinite;
+}
+
+.sphere-particle-two {
+  width: 5px;
+  height: 5px;
+  right: 13%;
+  top: 31%;
+  color: var(--pink);
+  animation: particleFloatingTwo 6s ease-in-out infinite;
+}
+
+.sphere-particle-three {
+  width: 4px;
+  height: 4px;
+  right: 28%;
+  bottom: 13%;
+  color: var(--orange);
+  animation: particleFloatingOne 7s ease-in-out infinite reverse;
+}
+
+/* Etiquetas */
+
+.sphere-tag {
+  min-height: 48px;
+  padding: 0 19px;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  position: absolute;
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(7, 7, 12, 0.82);
+  backdrop-filter: blur(14px);
+  color: #dad9e0;
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  font-size: 12px;
+  font-weight: 700;
+  animation: tagEntrance 1.2s
+    cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.sphere-tag span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--orange));
+  box-shadow: 0 0 12px rgba(239, 63, 156, 0.75);
+}
+
+.sphere-tag-development {
+  top: 17%;
+  right: -2%;
+  animation-delay: 0.8s;
+}
+
+.sphere-tag-consulting {
+  top: 49%;
+  left: -6%;
+  animation-delay: 1s;
+}
+
+.sphere-tag-automation {
+  right: 1%;
+  bottom: 10%;
+  animation-delay: 1.2s;
+}
+
+/* Animações */
+
+@keyframes sphereEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(30px) rotateX(12deg) scale(0.82);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0) scale(1);
+  }
+}
+
+@keyframes logoNaturalReveal {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateZ(-40px) scale(0.65) rotate(-7deg);
+  }
+
+  65% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateZ(18px) scale(1.04) rotate(1deg);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateZ(0) scale(1) rotate(0);
+  }
+}
+
+@keyframes sphereSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sphereFloating {
+  0%,
+  100% {
+    transform: translateY(0) rotateX(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotateX(2deg);
+  }
+}
+
+@keyframes sphereLightPass {
+  0%,
+  15% {
+    transform: translateX(0) rotate(14deg);
+    opacity: 0;
+  }
+
+  35% {
+    opacity: 0.65;
+  }
+
+  65% {
+    opacity: 0.28;
+  }
+
+  85%,
+  100% {
+    transform: translateX(440%) rotate(14deg);
+    opacity: 0;
+  }
+}
+
+@keyframes logoBreathing {
+  0%,
+  100% {
+    transform: scale(1);
+    filter:
+      drop-shadow(0 0 16px rgba(239, 63, 156, 0.26))
+      drop-shadow(0 0 35px rgba(155, 92, 255, 0.12));
+  }
+
+  50% {
+    transform: scale(1.025);
+    filter:
+      drop-shadow(0 0 21px rgba(239, 63, 156, 0.35))
+      drop-shadow(0 0 42px rgba(255, 139, 39, 0.15));
+  }
+}
+
+@keyframes ambientBreathing {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes orbitRotationOne {
+  from {
+    transform: rotate(0deg) rotateX(65deg);
+  }
+
+  to {
+    transform: rotate(360deg) rotateX(65deg);
+  }
+}
+
+@keyframes orbitRotationTwo {
+  from {
+    transform: rotate(-18deg) rotateY(58deg);
+  }
+
+  to {
+    transform: rotate(342deg) rotateY(58deg);
+  }
+}
+
+@keyframes orbitRotationThree {
+  from {
+    transform: rotate(34deg) rotateX(58deg);
+  }
+
+  to {
+    transform: rotate(394deg) rotateX(58deg);
+  }
+}
+
+@keyframes tagEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes particleFloatingOne {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: translate(12px, -15px);
+    opacity: 1;
+  }
+}
+
+@keyframes particleFloatingTwo {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translate(-14px, 12px);
+    opacity: 1;
+  }
+}
+
+/* Responsividade */
+
+@media (max-width: 1000px) {
+  .hero-art {
+    min-height: 590px;
+  }
+
+  .sphere-stage {
+    width: min(100%, 580px);
+  }
+}
+
+@media (max-width: 650px) {
+  .hero-art {
+    min-height: 440px;
+    margin: 0;
+    transform: none;
+  }
+
+  .sphere-stage {
+    width: 440px;
+    max-width: 125vw;
+    transform: scale(0.82);
+  }
+
+  .sphere-tag {
+    min-height: 42px;
+    padding: 0 14px;
+    font-size: 10px;
+  }
+
+  .sphere-tag-consulting {
+    left: 1%;
+  }
+
+  .sphere-tag-development {
+    right: 2%;
+  }
+}
+
+/* Respeita usuários que desativam animações */
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-sphere,
+  .sphere-rotation,
+  .sphere-rotation::before,
+  .sphere-logo,
+  .sphere-logo img,
+  .sphere-orbit,
+  .sphere-particle,
+  .sphere-tag,
+  .sphere-ambient-glow,
+  .sphere-light {
+    animation: none !important;
+  }
+
+  .sphere-logo {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
